@@ -8,21 +8,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Escola implements Serializable {
+public class Aluno implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
+	private String sexo;
 	
-	public Escola() {
+	public Aluno() {
 	}
 
-	public Escola(Integer id, String nome) {
+	public Aluno(Integer id, String nome, String sexo) {
 		super();
 		this.id = id;
 		this.nome = nome;
+		this.sexo = sexo;
 	}
 
 	public Integer getId() {
@@ -41,6 +43,14 @@ public class Escola implements Serializable {
 		this.nome = nome;
 	}
 
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -57,7 +67,7 @@ public class Escola implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Escola other = (Escola) obj;
+		Aluno other = (Aluno) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

@@ -8,21 +8,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Escola implements Serializable {
+public class Turma implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private String nome;
+	private String apelido;
+	private String serie;
+	private String periodo;
 	
-	public Escola() {
+	public Turma() {
 	}
-
-	public Escola(Integer id, String nome) {
+	
+	public Turma(Integer id, String apelido, String serie, String periodo) {
 		super();
 		this.id = id;
-		this.nome = nome;
+		this.apelido = apelido;
+		this.serie = serie;
+		this.periodo = periodo;
 	}
 
 	public Integer getId() {
@@ -33,12 +37,28 @@ public class Escola implements Serializable {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getApelido() {
+		return apelido;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setApelido(String apelido) {
+		this.apelido = apelido;
+	}
+
+	public String getSerie() {
+		return serie;
+	}
+
+	public void setSerie(String serie) {
+		this.serie = serie;
+	}
+
+	public String getPeriodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(String periodo) {
+		this.periodo = periodo;
 	}
 
 	@Override
@@ -57,7 +77,7 @@ public class Escola implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Escola other = (Escola) obj;
+		Turma other = (Turma) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -65,4 +85,5 @@ public class Escola implements Serializable {
 			return false;
 		return true;
 	}
+	
 }

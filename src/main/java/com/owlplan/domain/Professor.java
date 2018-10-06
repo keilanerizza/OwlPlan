@@ -1,6 +1,7 @@
 package com.owlplan.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,21 +9,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Escola implements Serializable {
+public class Professor implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
+	private Date nascimento;
+	private String sexo;
 	
-	public Escola() {
+	public Professor() {
 	}
 
-	public Escola(Integer id, String nome) {
+	public Professor(Integer id, String nome, Date nascimento, String sexo) {
 		super();
 		this.id = id;
 		this.nome = nome;
+		this.nascimento = nascimento;
+		this.sexo = sexo;
 	}
 
 	public Integer getId() {
@@ -41,6 +46,22 @@ public class Escola implements Serializable {
 		this.nome = nome;
 	}
 
+	public Date getNascimento() {
+		return nascimento;
+	}
+
+	public void setNascimento(Date nascimento) {
+		this.nascimento = nascimento;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -57,7 +78,7 @@ public class Escola implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Escola other = (Escola) obj;
+		Professor other = (Professor) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -65,4 +86,5 @@ public class Escola implements Serializable {
 			return false;
 		return true;
 	}
+
 }
