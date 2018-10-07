@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Planejamento implements Serializable {
@@ -16,6 +18,10 @@ public class Planejamento implements Serializable {
 	private Integer id;
 	private String descricao;
 	private String caminho;
+	
+	@ManyToOne
+	@JoinColumn(name="turma_id")
+	private Turma turma;
 	
 	public Planejamento() {
 	}

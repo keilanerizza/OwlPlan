@@ -1,12 +1,19 @@
 package com.owlplan.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Professor implements Serializable {
@@ -19,15 +26,24 @@ public class Professor implements Serializable {
 	private Date nascimento;
 	private String sexo;
 	
+	@ManyToOne
+	@JoinColumn(name="usuario_id")
+	private Usuario usuario;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="professor")
+	private List<Turma> turmas = new ArrayList<>();
+	
 	public Professor() {
 	}
 
-	public Professor(Integer id, String nome, Date nascimento, String sexo) {
+	public Professor(Integer id, String nome, Date nascimento, String sexo, Usuario usuario) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.nascimento = nascimento;
 		this.sexo = sexo;
+		this.usuario = usuario;
 	}
 
 	public Integer getId() {
@@ -60,6 +76,22 @@ public class Professor implements Serializable {
 
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
+	}
+
+	public List<Turma> getTurmas() {
+		return turmas;
+	}
+
+	public void setTurmas(List<Turma> turmas) {
+		this.turmas = turmas;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	@Override

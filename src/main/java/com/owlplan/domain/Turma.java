@@ -1,11 +1,18 @@
 package com.owlplan.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Turma implements Serializable {
@@ -17,6 +24,22 @@ public class Turma implements Serializable {
 	private String apelido;
 	private String serie;
 	private String periodo;
+	
+	@ManyToOne
+	@JoinColumn(name="professor_id")
+	private Professor professor;
+	
+	@ManyToOne
+	@JoinColumn(name="escola_id")
+	private Escola escola;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="turma")
+	private List<Aluno> alunos = new ArrayList<>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="turma")
+	private List<Planejamento> planos = new ArrayList<>();
 	
 	public Turma() {
 	}

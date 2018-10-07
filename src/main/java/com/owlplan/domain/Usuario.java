@@ -1,11 +1,16 @@
 package com.owlplan.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Usuario implements Serializable {
@@ -16,6 +21,10 @@ public class Usuario implements Serializable {
 	private Integer id;
 	private String email;
 	private String senha;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="usuario")
+	private List<Evento> eventos = new ArrayList<>();
 	
 	public Usuario() {
 	}
@@ -49,6 +58,14 @@ public class Usuario implements Serializable {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public List<Evento> getEventos() {
+		return eventos;
+	}
+
+	public void setEventos(List<Evento> eventos) {
+		this.eventos = eventos;
 	}
 
 	@Override
