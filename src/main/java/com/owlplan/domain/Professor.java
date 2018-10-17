@@ -22,7 +22,6 @@ public class Professor implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private String nome;
 	private Date nascimento;
 	private String sexo;
 	
@@ -37,10 +36,9 @@ public class Professor implements Serializable {
 	public Professor() {
 	}
 
-	public Professor(Integer id, String nome, Date nascimento, String sexo, Usuario usuario) {
+	public Professor(Integer id, Date nascimento, String sexo, Usuario usuario) {
 		super();
 		this.id = id;
-		this.nome = nome;
 		this.nascimento = nascimento;
 		this.sexo = sexo;
 		this.usuario = usuario;
@@ -52,14 +50,6 @@ public class Professor implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 
 	public Date getNascimento() {

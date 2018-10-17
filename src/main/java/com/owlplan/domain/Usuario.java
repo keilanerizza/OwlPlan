@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -21,6 +23,12 @@ public class Usuario implements Serializable {
 	private Integer id;
 	private String email;
 	private String senha;
+
+	private String nome;
+	
+	@ManyToOne
+	@JoinColumn(name="perfil_id")
+	private Perfil perfil;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="usuario")
@@ -29,11 +37,13 @@ public class Usuario implements Serializable {
 	public Usuario() {
 	}
 
-	public Usuario(Integer id, String email, String senha) {
+	public Usuario(Integer id, String nome, String email, String senha, Perfil perfil) {
 		super();
 		this.id = id;
+		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
+		this.perfil = perfil;
 	}
 
 	public Integer getId() {
@@ -42,6 +52,14 @@ public class Usuario implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getEmail() {
@@ -58,6 +76,14 @@ public class Usuario implements Serializable {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public Perfil getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
 	}
 
 	public List<Evento> getEventos() {

@@ -29,7 +29,7 @@ public class OwlplanApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Usuario user1 = new Usuario(1, "user1@teste.com", "user1teste");
+		/*Usuario user1 = new Usuario(1, "user1@teste.com", "user1teste");
 		Usuario user2 = new Usuario(2, "user2@teste.com", "user2teste");
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -38,6 +38,6 @@ public class OwlplanApplication implements CommandLineRunner {
 		Professor prof2 = new Professor(2, "Ciclana", sdf.parse("15/08/1970"), "F", user2);
 		
 		usuarioRepository.saveAll(Arrays.asList(user1, user2));
-		professorRepository.saveAll(Arrays.asList(prof1, prof2));
+		professorRepository.saveAll(Arrays.asList(prof1, prof2));*/
 	}
 }

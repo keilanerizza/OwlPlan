@@ -1,11 +1,18 @@
 package com.owlplan.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Escola implements Serializable {
@@ -14,15 +21,23 @@ public class Escola implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private String nome;
+	private String telefone;
 	
+	@ManyToOne
+	@JoinColumn(name="usuario_id")
+	private Usuario usuario;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="escola")
+	private List<Turma> turmas = new ArrayList<>();
+
 	public Escola() {
 	}
 
-	public Escola(Integer id, String nome) {
+	public Escola(Integer id, String telefone) {
 		super();
 		this.id = id;
-		this.nome = nome;
+		this.telefone = telefone;
 	}
 
 	public Integer getId() {
@@ -33,12 +48,28 @@ public class Escola implements Serializable {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+	
+	public List<Turma> getTurmas() {
+		return turmas;
+	}
+	
+	public void setTurmas(List<Turma> turmas) {
+		this.turmas = turmas;
+	}
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	@Override

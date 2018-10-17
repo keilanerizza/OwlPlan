@@ -1,34 +1,29 @@
 package com.owlplan.dto;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.validation.constraints.NotEmpty;
 
-import com.owlplan.domain.Professor;
+import com.owlplan.domain.Escola;
 import com.owlplan.domain.Usuario;
 
-public class ProfessorDTO implements Serializable{
+public class EscolaDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
-	private Date nascimento;
-	
-	@NotEmpty(message="Preenchimento obrigatório")
-	private String sexo;
+	private String telefone;
 	
 	private Usuario usuario;
 	
-	public ProfessorDTO() {
+	public EscolaDTO() {
 	}
 	
-	public ProfessorDTO(Professor obj) {
+	public EscolaDTO(Escola obj) {
 		super();
 		id = obj.getId();
-		nascimento = obj.getNascimento();
-		sexo = obj.getSexo();
+		telefone = obj.getTelefone();
 		usuario = obj.getUsuario();
 	}
 
@@ -40,20 +35,12 @@ public class ProfessorDTO implements Serializable{
 		this.id = id;
 	}
 
-	public Date getNascimento() {
-		return nascimento;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setNascimento(Date nascimento) {
-		this.nascimento = nascimento;
-	}
-
-	public String getSexo() {
-		return sexo;
-	}
-
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 	public Usuario getUsuario() {

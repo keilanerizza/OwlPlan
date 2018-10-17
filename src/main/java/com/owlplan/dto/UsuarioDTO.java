@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.validation.constraints.NotEmpty;
 
+import com.owlplan.domain.Perfil;
 import com.owlplan.domain.Usuario;
 
 public class UsuarioDTO implements Serializable{
@@ -17,6 +18,8 @@ public class UsuarioDTO implements Serializable{
 	@NotEmpty(message="Preenchimento obrigatório")
 	private String senha;
 	
+	private Perfil perfil;
+	
 	public UsuarioDTO() {
 	}
 	
@@ -25,6 +28,7 @@ public class UsuarioDTO implements Serializable{
 		id = obj.getId();
 		email = obj.getEmail();
 		senha = obj.getSenha();
+		perfil = obj.getPerfil();
 	}
 
 	public Integer getId() {
@@ -50,4 +54,13 @@ public class UsuarioDTO implements Serializable{
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+
+	public Perfil getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
+	}
+	
 }
