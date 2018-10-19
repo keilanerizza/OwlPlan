@@ -34,10 +34,11 @@ public class Escola implements Serializable {
 	public Escola() {
 	}
 
-	public Escola(Integer id, String telefone) {
+	public Escola(Integer id, String telefone, Usuario usuario) {
 		super();
 		this.id = id;
 		this.telefone = telefone;
+		this.usuario = usuario;
 	}
 
 	public Integer getId() {
