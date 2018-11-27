@@ -10,7 +10,6 @@ import com.owlplan.domain.Professor;
 import com.owlplan.domain.Usuario;
 import com.owlplan.dto.UsuarioNewProfessorDTO;
 import com.owlplan.repositories.ProfessorRepository;
-import com.owlplan.repositories.UsuarioRepository;
 import com.owlplan.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -20,7 +19,7 @@ public class ProfessorService {
 	private ProfessorRepository repo;
 	
 	@Autowired
-	private UsuarioRepository usuarioRepository;
+	private UsuarioService usuarioService;
 
 	public Professor find(Integer id) {
 		Optional<Professor> obj = repo.findById(id);
@@ -30,7 +29,7 @@ public class ProfessorService {
 	
 	public Professor insert(Professor obj) {
 		obj.setId(null);
-		Usuario user = new Usuario(usuarioRepository.findByLastId(), null, null, null, null);
+		Usuario user = usuarioService.insert(obj.getUsuario());
 		obj.setUsuario(user);
 		return repo.save(obj);
 	}
@@ -39,10 +38,12 @@ public class ProfessorService {
 		return repo.findAll();
 	}
 	
-	public Professor fromDTO(UsuarioNewProfessorDTO objDto, Usuario user) {
+	public Professor fromDTO(UsuarioNewProfessorDTO objDto) {
+		Usuario user = usuarioService.fromDTO(objDto);
 		Professor prof = new Professor(null, objDto.getNascimento(), objDto.getSexo(), user);
 		return prof;
 	}
+	
 	
 	/*public Professor fromDTO(ProfessorDTO objDto) {
 		return new Usuario(objDto.getId(), objDto.getNome(), objDto.getEmail(), objDto.getSenha(), null);

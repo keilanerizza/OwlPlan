@@ -16,11 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.owlplan.domain.Professor;
-import com.owlplan.domain.Usuario;
 import com.owlplan.dto.ProfessorDTO;
 import com.owlplan.dto.UsuarioNewProfessorDTO;
 import com.owlplan.services.ProfessorService;
-import com.owlplan.services.UsuarioService;
 
 @RestController
 @RequestMapping(value="/professor")
@@ -28,9 +26,6 @@ public class ProfessorResource {
 	
 	@Autowired
 	private ProfessorService service;
-	
-	@Autowired
-	private UsuarioService usuarioService;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Professor> find(@PathVariable Integer id) {
@@ -45,15 +40,12 @@ public class ProfessorResource {
 		return ResponseEntity.ok().body(listDto);
 	}
 	
-	
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody UsuarioNewProfessorDTO objDto){
-		Usuario obj = usuarioService.fromDTO(objDto);
-		obj = usuarioService.insert(obj);
-		Professor objProfessor = service.fromDTO(objDto, obj);
+		Professor objProfessor = service.fromDTO(objDto);
 		objProfessor = service.insert(objProfessor);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-				.path("/{id}").buildAndExpand(obj.getId()).toUri();
+				.path("/{id}").buildAndExpand(objProfessor.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 
