@@ -5,7 +5,6 @@ import java.io.Serializable;
 import javax.validation.constraints.NotEmpty;
 
 import com.owlplan.domain.Escola;
-import com.owlplan.domain.Usuario;
 
 public class EscolaDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -15,7 +14,7 @@ public class EscolaDTO implements Serializable{
 	@NotEmpty(message="Preenchimento obrigatório")
 	private String telefone;
 	
-	private Usuario usuario;
+	private String usuarioNome;
 	
 	public EscolaDTO() {
 	}
@@ -24,7 +23,7 @@ public class EscolaDTO implements Serializable{
 		super();
 		id = obj.getId();
 		telefone = obj.getTelefone();
-		usuario = obj.getUsuario();
+		setUsuarioNome(obj.getUsuario().getNome());
 	}
 
 	public Integer getId() {
@@ -43,12 +42,11 @@ public class EscolaDTO implements Serializable{
 		this.telefone = telefone;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
+	public String getUsuarioNome() {
+		return usuarioNome;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-	
+	public void setUsuarioNome(String usuarioNome) {
+		this.usuarioNome = usuarioNome;
+	}	
 }
