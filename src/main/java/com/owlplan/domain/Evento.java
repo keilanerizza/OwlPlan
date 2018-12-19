@@ -27,11 +27,20 @@ public class Evento implements Serializable {
 	public Evento() {
 	}
 
-	public Evento(Integer id, Date data, String descricao) {
+	public Evento(Integer id, Date data, String descricao, Usuario usuario) {
 		super();
 		this.id = id;
 		this.data = data;
 		this.descricao = descricao;
+		this.usuario = usuario;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public Integer getId() {

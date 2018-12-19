@@ -34,7 +34,6 @@ public class TurmaResource {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<List<TurmaDTO>> findAll() {
-		System.out.println("resource");
 		List<Turma> list = service.findAll();
 		List<TurmaDTO> listDto = list.stream().map(obj -> new TurmaDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);

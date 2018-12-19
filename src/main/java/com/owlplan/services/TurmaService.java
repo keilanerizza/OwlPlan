@@ -29,12 +29,10 @@ public class TurmaService {
 
 	public Turma find(Integer id) {
 		Optional<Turma> obj = repo.findById(id);
-			
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado ! Id: " + id + ", Tipo: " + Turma.class.getName()));
 	}
 	
 	public List<Turma> findAll() {
-		System.out.println("TurmaService");
 		return repo.findAll();
 	}
 	
