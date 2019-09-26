@@ -17,7 +17,6 @@ public class EventoDTO implements Serializable {
 	@NotEmpty(message = "Preenchimento obrigatório")
 	private String descricao;
 	
-	@NotEmpty(message = "Preenchimento obrigatório")
 	private Date data;
 
 	public EventoDTO() {
